@@ -23,3 +23,6 @@ services:
       - DATABASE_URL=postgres://root:admin@db:5432/debugDivas
     depends_on:
       - db
+
+volumes:
+  postgres_data:
