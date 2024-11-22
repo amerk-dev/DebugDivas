@@ -1,4 +1,4 @@
 {
   "plugins": ["@typescript-eslint", "prettier"],
-  "extends": ["next/typescript", "next/core-web-vitals", "plugin:prettier/recommended"]
+  "extends": ["next/typescript", "next/core-web-vitals"]
 }

@@ -12,7 +12,6 @@ const oswald = Oswald({
   subsets: ['cyrillic', 'latin'],
 })
 
-export default {
-  raleway,
-  oswald,
-}
+const fonts = { oswald, raleway }
+
+export default fonts
