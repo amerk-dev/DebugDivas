@@ -16,12 +16,9 @@ jobs:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ 93.183.83.7 }}
-          username: ${{ root }}
-          password: ${{ goB,@rBR+DUN3N }}
-          # host: ${{ secrets.VPS_IP }}
-          # username: ${{ secrets.VPS_USER }}
-          # password: ${{ secrets.VPS_PASSWORD }}
+          host: ${{ secrets.VPS_IP }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
           script: |
             set -e
             PROJECT_DIR="project"
