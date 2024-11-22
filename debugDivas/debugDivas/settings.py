@@ -56,8 +56,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'debugDivas.urls'
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    "*",
-    "*",
+    "http://localhost:3000",
     "http://localhost:8080",
     "http://127.0.0.1:9000",
 ]
@@ -90,7 +89,7 @@ DATABASES = {
         'NAME': 'debugDivas',  # Имя вашей базы данных
         'USER': 'root',  # Имя пользователя базы данных
         'PASSWORD': 'admin',  # Пароль пользователя
-        'HOST': 'localhost',  # Хост базы данных
+        'HOST': 'db',  # Хост базы данных
         'PORT': '5432',  # Порт базы данных
     }
 }
