@@ -1,4 +1,4 @@
-import { Container, TopBar } from "@/src/components/shared";
+import { Container, TopBar } from '@/components/shared'
 
 export default function Home() {
   return (
@@ -8,5 +8,5 @@ export default function Home() {
         <div className="">Список мероприятий</div>
       </Container>
     </>
-  );
+  )
 }
