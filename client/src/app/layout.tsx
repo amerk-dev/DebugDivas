@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import fonts from '@/fonts'
-import '@/styles/main.scss'
+import '@/styles/main.css'
 import { Header } from '@/components/shared'
 
 export const metadata: Metadata = {
