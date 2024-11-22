@@ -4,8 +4,6 @@ from users.models import CustomUser, Location, SportType
 
 
 class Event(models.Model):
-    following_user = models.ForeignKey(CustomUser, related_name='events_as_following', on_delete=models.CASCADE)
-    followed_user = models.ForeignKey(CustomUser, related_name='events_as_followed', on_delete=models.CASCADE)
     sport_type = models.ForeignKey(SportType, related_name='sport_type', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     sex = models.BooleanField()  # True for male, False for female
