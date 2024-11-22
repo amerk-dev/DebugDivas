@@ -24,14 +24,5 @@ services:
     depends_on:
       - db
 
-  client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    image: client
-    working_dir: /app
-    ports:
-      - "3000:3000"
-
 volumes:
   postgres_data:
