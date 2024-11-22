@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import fonts from '@/fonts'
+import fonts from '@/lib/fonts'
 import '@/styles/main.css'
 import { Header } from '@/components/shared'
 
