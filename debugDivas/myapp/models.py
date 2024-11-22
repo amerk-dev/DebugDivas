@@ -58,3 +58,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.full_name
+    
+
+class Event(models.Model):
+    following_user = models.ForeignKey(User, related_name='events_as_following', on_delete=models.CASCADE)
+    followed_user = models.ForeignKey(User, related_name='events_as_followed', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    sex = models.BooleanField()  # True for male, False for female
+    started_at = models.DateTimeField()
+    ended_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    seats = models.IntegerField()
+    min_age = models.IntegerField()
+    max_age = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.name} (ID: {self.id})"
