@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Container, SearchInput } from "@/components/shared";
+import { Container, SearchInput } from "@/src/components/shared";
 
 interface Props {
   className?: string;

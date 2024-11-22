@@ -8,7 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
   Button,
-} from "@/components/ui";
+} from "@/src/components/ui";
 
 export const Filters: React.FC = () => {
   return (

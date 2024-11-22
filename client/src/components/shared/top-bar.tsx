@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Formats, Container, Filters } from "@/components/shared";
+import { Formats, Container, Filters } from "@/src/components/shared";
 
 interface Props {
   className?: string;

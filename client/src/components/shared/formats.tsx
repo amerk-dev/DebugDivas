@@ -6,7 +6,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui";
+} from "@/src/components/ui";
 
 export const Formats: React.FC = () => {
   return (
