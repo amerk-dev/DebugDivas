@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Container, SearchInput } from "@/src/components/shared";
+import Link from 'next/link'
+import { cn } from '@/lib/utils'
+import { Container, SearchInput } from '@/components/shared'
 
 interface Props {
-  className?: string;
+  className?: string
 }
 
 export const Header: React.FC<Props> = ({ className }) => {
   return (
-    <header className={cn(" border-b", className)}>
+    <header className={cn(' border-b', className)}>
       <Container className="flex items-center justify-between py-8">
         <Link href="/">
           <div className="flex items-center gap-4">
@@ -24,5 +24,5 @@ export const Header: React.FC<Props> = ({ className }) => {
         </div>
       </Container>
     </header>
-  );
-};
+  )
+}

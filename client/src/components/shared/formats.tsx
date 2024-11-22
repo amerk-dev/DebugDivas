@@ -6,7 +6,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/src/components/ui";
+} from '@/components/ui'
 
 export const Formats: React.FC = () => {
   return (
@@ -25,5 +25,5 @@ export const Formats: React.FC = () => {
         </SelectGroup>
       </SelectContent>
     </Select>
-  );
-};
+  )
+}

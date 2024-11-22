@@ -8,7 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
   Button,
-} from "@/src/components/ui";
+} from '@/components/ui'
 
 export const Filters: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ export const Filters: React.FC = () => {
       <SheetTrigger asChild>
         <Button variant="default">Фильтры</Button>
       </SheetTrigger>
-      <SheetContent side={"left"}>
+      <SheetContent side={'left'}>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>
@@ -31,5 +31,5 @@ export const Filters: React.FC = () => {
         </SheetFooter>
       </SheetContent>
     </Sheet>
-  );
-};
+  )
+}
