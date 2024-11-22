@@ -9,3 +9,4 @@ sqlparse==0.5.2
 typing_extensions==4.12.2
 tzdata==2024.2
 drf-yasg==1.21.8
+dj-rest-auth==7.0.0

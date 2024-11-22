@@ -15,3 +15,26 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['full_name', 'tg_username', 'access_token', 'refresh_token', 'sport', 'location', 'is_active', 'is_staff']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('tg_username', 'full_name', 'email')
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ('tg_username', 'full_name', 'email', 'password')
+
+    def create(self, validated_data):
+        user = CustomUser.objects.create_user(
+            tg_username=validated_data['tg_username'],
+            full_name=validated_data['full_name'],
+            email=validated_data['email'],
+            password=validated_data['password']
+        )
+        return user
