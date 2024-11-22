@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
-from users.managers import CustomUserManager
+from .managers import CustomUserManager
 
 
 class SportType(models.Model):
