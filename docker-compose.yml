@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   db:
@@ -23,6 +23,15 @@ services:
       - DATABASE_URL=postgres://root:admin@db:5432/debugDivas
     depends_on:
       - db
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: client
+    working_dir: /app
+    ports:
+      - "3000:3000"
 
 volumes:
   postgres_data:
