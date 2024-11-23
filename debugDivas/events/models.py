@@ -12,7 +12,7 @@ class Gender(models.IntegerChoices):
 class Event(models.Model):
     name = models.CharField(max_length=255, verbose_name='название')
     sport_type = models.CharField(max_length=255, verbose_name='вид спорта')
-    gender = models.BooleanField(verbose_name='пол',choices=Gender.choices)
+    gender = models.IntegerField(verbose_name='пол',choices=Gender.choices)
     min_age = models.IntegerField(verbose_name='минимальный возраст')
     max_age = models.IntegerField(verbose_name='максимальный возраст')
     location = models.CharField(max_length=255, verbose_name='локация')
