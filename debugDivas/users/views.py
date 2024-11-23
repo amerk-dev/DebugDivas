@@ -1,14 +1,7 @@
 from rest_framework import viewsets, generics, permissions, response, status
-from .models import CustomUser, SportType, Location
-from .serializers import UserSerializer, SportTypeSerializer, LocationSerializer, RegisterSerializer
+from .models import CustomUser
+from .serializers import UserSerializer, RegisterSerializer
 
-class SportTypeViewSet(viewsets.ModelViewSet):
-    queryset = SportType.objects.all()
-    serializer_class = SportTypeSerializer
-
-class LocationViewSet(viewsets.ModelViewSet):
-    queryset = Location.objects.all()
-    serializer_class = LocationSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
