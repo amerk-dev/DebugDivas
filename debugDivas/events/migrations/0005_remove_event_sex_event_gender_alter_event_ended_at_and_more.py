@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RemoveField(
             model_name='event',
-            name='sex',
+            name='gender',
         ),
         migrations.AddField(
             model_name='event',
