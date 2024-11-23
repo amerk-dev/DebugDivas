@@ -24,5 +24,17 @@ services:
     depends_on:
       - db
 
+  parsservise:
+    build: ./fastapi
+    command: uvicorn main:app --host 0.0.0.0 --port 8081
+    volumes:
+      - ./fastapi:/app
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgres://root:admin@db:5432/debugDivas
+    depends_on:
+      - db
+
 volumes:
   postgres_data:
