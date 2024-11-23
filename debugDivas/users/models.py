@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from .managers import CustomUserManager
@@ -9,6 +9,10 @@ class SportType(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'спорт'
+        verbose_name_plural = 'спорт'
 
 
 class Location(models.Model):
@@ -16,38 +20,29 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'локации'
+        verbose_name_plural = 'локации'
 
 
 
 class CustomUser(AbstractUser):
     username = None
-    email = models.EmailField(
-        unique=True,
-    )
-    full_name = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
     tg_username = models.CharField(max_length=255, unique=True)
-    access_token = models.CharField(max_length=255, null=True, blank=True)
-    refresh_token = models.CharField(max_length=255, null=True, blank=True)
-    sport = models.ForeignKey(SportType, on_delete=models.SET_NULL, null=True)
-    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
+    sport_type = models.ForeignKey('SportType', on_delete=models.SET_NULL, null=True, verbose_name='спорт')
 
-    USERNAME_FIELD = "email"
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
-    groups = models.ManyToManyField(
-        Group,
-        related_name='custom_user_set',
-        blank=True
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name='custom_user_permissions_set',
-        blank=True
-    )
 
     objects = CustomUserManager()
 
     def __str__(self):
         return self.email
+    
+    class Meta:
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
     
 
