@@ -8,18 +8,25 @@ class CustomUserAdmin(admin.ModelAdmin):
         CustomUser.tg_username.field.name, 
         CustomUser.sport_type.field.name, 
         CustomUser.is_active.field.name, 
-        CustomUser.date_joined.field.name
+        CustomUser.date_joined.field.name,
     )
+    can_delete = False
 
 
 class SportTypeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('name',)
+    list_display = (
+        SportType.id.field.name,
+        SportType.name.field.name
+    )
+    search_fields = (SportType.name.field.name,)
 
 
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('name',)
+    list_display = (
+        Location.id.field.name,
+        Location.name.field.name
+    )
+    search_fields = (Location.name.field.name,)
 
 
 

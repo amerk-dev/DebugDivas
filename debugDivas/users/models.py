@@ -30,8 +30,13 @@ class Location(models.Model):
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
-    tg_username = models.CharField(max_length=255, unique=True)
-    sport_type = models.ForeignKey('SportType', on_delete=models.SET_NULL, null=True, verbose_name='спорт')
+    tg_username = models.CharField(max_length=255, unique=True, verbose_name="Telegram username")
+    sport_type = models.ForeignKey(
+        SportType,
+        on_delete=models.SET_NULL,
+        null=True, 
+        verbose_name='Вид спорта'
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
