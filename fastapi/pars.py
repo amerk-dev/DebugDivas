@@ -91,25 +91,63 @@ def setEventValueToDB():
         for event in events:
             created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-            insert_query = """
+            # Проверка на наличие записи с таким ekp_id
+            check_query = """
+                SELECT COUNT(*) FROM events_event WHERE ekp_id = %s;
+            """
+            cursor.execute(check_query, (event["ekp_id"],))
+            count = cursor.fetchone()[0]
+            print(count)
+
+            if count > 0:
+                print("dddddddddd")
+                # Если запись существует, выполняем UPDATE
+                update_query = """
+                    UPDATE events_event 
+                    SET name = %s, gender = %s, min_age = %s, max_age = %s, 
+                        started_at = %s, ended_at = %s, location = %s, 
+                        sport_type = %s, seats = %s, created_at = %s 
+                    WHERE ekp_id = %s;
+                """
+                cursor.execute(update_query, (
+                    event["name"],
+                    event["sex"],
+                    event["min_age"],
+                    event["max_age"],
+                    event["started_at"],
+                    event["ended_at"],
+                    event["location"],
+                    event["sport"],
+                    event["seats"],
+                    created_at,
+                    event["ekp_id"]
+                ))
+            else:
+                print("eeeeeeeee")
+                # Если записи нет, выполняем INSERT
+                insert_query = """
                     INSERT INTO events_event 
                     (ekp_id, name, gender, min_age, max_age, started_at, ended_at, location, sport_type, seats, created_at) 
-                    VALUES (%s ,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
-                    """
-            cursor.execute(insert_query, (
-                event["ekp_id"],
-                event["name"],
-                event["sex"],
-                event["min_age"],
-                event["max_age"],
-                event["started_at"],
-                event["ended_at"],
-                event["location"],
-                event["sport"],
-                event["seats"],
-                created_at
-            ))
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+                """
+                cursor.execute(insert_query, (
+                    event["ekp_id"],
+                    event["name"],
+                    event["sex"],
+                    event["min_age"],
+                    event["max_age"],
+                    event["started_at"],
+                    event["ended_at"],
+                    event["location"],
+                    event["sport"],
+                    event["seats"],
+                    created_at
+                ))
+
         connection.commit()
         return "Данные из PDF успешно спаршены"
     except Exception as e:
+        connection.rollback()
         return f"Ошибка парсинга данных из PDF, error: {e}"
+    finally:
+        cursor.close()
