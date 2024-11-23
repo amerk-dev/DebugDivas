@@ -2,9 +2,9 @@ from django.db import models
 
 
 class Gender(models.IntegerChoices):
-    MALE = 1, "Мужчины"
-    FAMEALE = 2, "Женщины"
-    BOTH = 0, "Мужчины и женщины"
+    MALE = 1, "мужчины"
+    FAMEALE = 2, "женщины"
+    BOTH = 0, "мужчины, женщины"
 
     __empty__ = "..."
 
