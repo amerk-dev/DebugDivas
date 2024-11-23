@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser, SportType, Location
+from .models import CustomUser
 
 
 class CustomUserAdmin(admin.ModelAdmin):
@@ -8,21 +8,10 @@ class CustomUserAdmin(admin.ModelAdmin):
         CustomUser.tg_username.field.name, 
         CustomUser.sport_type.field.name, 
         CustomUser.is_active.field.name, 
-        CustomUser.date_joined.field.name
+        CustomUser.date_joined.field.name,
     )
-
-
-class SportTypeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('name',)
-
-
-class LocationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('name',)
+    can_delete = False
 
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(SportType, SportTypeAdmin)
-admin.site.register(Location, LocationAdmin)
