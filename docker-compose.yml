@@ -32,6 +32,11 @@ services:
     ports:
       - "8081:8081"
     environment:
+      - DB_NAME=debugDivas
+      - DB_USER=root
+      - DB_PASSWORD=admin
+      - DB_HOST=db
+      - DB_PORT=5432
       - DATABASE_URL=postgres://root:admin@db:5432/debugDivas
     depends_on:
       - db
