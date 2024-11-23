@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import pdfplumber
 import re
 import pandas as pd
@@ -55,15 +57,22 @@ def parse_pdf_to_events(file_path):
                     classes = [item.strip() for item in class_info if not 'дисциплина' in item.lower()]
                     disciplines = [item.strip() for item in class_info if 'дисциплина' in item.lower()]
 
+                    if gender_age == "мужчины": gender_age = 1
+                    elif gender_age == "женщины": gender_age = 2
+                    else: gender_age = 0
+
+                    start_date = datetime.strptime(start_date, "%d.%m.%Y").strftime("%Y-%m-%d")
+                    end_date = datetime.strptime(end_date, "%d.%m.%Y").strftime("%Y-%m-%d")
+
                     event_data = {
-                        "id": event_id,
+                        "ekp_id": event_id,
                         "name": name,
                         "started_at": start_date,
                         "ended_at": end_date,
-                        "sex": gender_age.strip(),
-                        "min_age": int(age) if age else None,
+                        "sex": gender_age,
+                        "min_age": int(age) if age else 12,
                         "max_age": 100,
-                        "location": region + city,
+                        "location": region + " " + city,
                         "sport": ', '.join(classes),
                         "seats": int(participants)
                     }
@@ -75,17 +84,32 @@ def parse_pdf_to_events(file_path):
     return events
 
 
-
-events = parse_pdf_to_events("eee.pdf")
-
-
-def setEventValueToDB(events):
+def setEventValueToDB():
+    events = parse_pdf_to_events("eee.pdf")
     cursor = connection.cursor()
-    for event in events:
-        insert_query = """
-        INSERT INTO events_event 
-        (name, sex, min_age, max_age, started_at, ended_at, location, sport, seats) 
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);
-        """
-        cursor.execute(insert_query, event["name"], event["sex"], event["min_age"], event["max_age"], event["started_at"], event["ended_at"], event["location"], event["sport"], event["seats"])
-    connection.commit()
+    try:
+        for event in events:
+            created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+            insert_query = """
+                    INSERT INTO events_event 
+                    (ekp_id, name, gender, min_age, max_age, started_at, ended_at, location, sport_type, seats, created_at) 
+                    VALUES (%s ,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+                    """
+            cursor.execute(insert_query, (
+                event["ekp_id"],
+                event["name"],
+                event["sex"],
+                event["min_age"],
+                event["max_age"],
+                event["started_at"],
+                event["ended_at"],
+                event["location"],
+                event["sport"],
+                event["seats"],
+                created_at
+            ))
+        connection.commit()
+        return "Данные из PDF успешно спаршены"
+    except Exception as e:
+        return f"Ошибка парсинга данных из PDF, error: {e}"

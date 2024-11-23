@@ -2,8 +2,9 @@ from django_filters import rest_framework as filters
 from .models import Event
 
 class EventFilter(filters.FilterSet):
-    sport_type = filters.NumberFilter(field_name='sport_type__id')
-    location = filters.NumberFilter(field_name='location__id')
+    ekp_id = filters.CharFilter(field_name='ekp_id')
+    sport_type = filters.CharFilter(field_name='sport_type')
+    location = filters.CharFilter(field_name='location')
     seats = filters.RangeFilter()
     gender = filters.BooleanFilter()
     age = filters.RangeFilter(field_name='min_age', lookup_expr='lte')

@@ -2,3 +2,8 @@ fastapi==0.115.5
 uvicorn
 sqlalchemy
 psycopg2-binary
+pdfplumber
+pandas
+fastapi_scheduler==0.0.15
+pydantic_settings
+fastapi-amis-admin
