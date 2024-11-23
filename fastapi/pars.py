@@ -65,7 +65,7 @@ def parse_pdf_to_events(file_path):
                     end_date = datetime.strptime(end_date, "%d.%m.%Y").strftime("%Y-%m-%d")
 
                     event_data = {
-                        "id": event_id,
+                        "ekp_id": event_id,
                         "name": name,
                         "started_at": start_date,
                         "ended_at": end_date,
@@ -93,10 +93,11 @@ def setEventValueToDB():
 
             insert_query = """
                     INSERT INTO events_event 
-                    (name, gender, min_age, max_age, started_at, ended_at, location, sport_type, seats, created_at) 
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+                    (ekp_id, name, gender, min_age, max_age, started_at, ended_at, location, sport_type, seats, created_at) 
+                    VALUES (%s ,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
                     """
             cursor.execute(insert_query, (
+                event["ekp_id"],
                 event["name"],
                 event["sex"],
                 event["min_age"],

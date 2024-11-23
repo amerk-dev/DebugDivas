@@ -10,6 +10,7 @@ class Gender(models.IntegerChoices):
 
 
 class Event(models.Model):
+    ekp_id = models.CharField(max_length=25, verbose_name="№ ЕКП")
     name = models.CharField(max_length=255, verbose_name='название')
     sport_type = models.CharField(max_length=255, verbose_name='вид спорта')
     gender = models.IntegerField(verbose_name='пол',choices=Gender.choices)
